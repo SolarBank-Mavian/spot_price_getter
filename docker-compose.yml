@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  spot_container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spot_container
+    environment:
+      - POSTGREST_URL=${POSTGREST_URL:-http://localhost:3000}
+      - POSTGREST_API_KEY=${POSTGREST_API_KEY}
+    # Optional: uncomment to connect to external network
+    # networks:
+    #   - external_network
+    restart: unless-stopped
+
+# Optional: uncomment when integrating with larger compose setup
+# networks:
+#   external_network:
+#     external: true
+
